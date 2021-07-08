@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 17:04:48 by user42            #+#    #+#             */
-/*   Updated: 2021/07/06 17:22:16 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/08 16:47:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	    push(t_pile *src, t_pile *dst)
     {
 	tmp = src->head;
 	src->head = src->head->next;
-	src->head->prev = NULL;
+	if (src->head)
+	    src->head->prev = NULL;
 	if (!dst->head)
 	{
 	    tmp->next = NULL;
@@ -33,6 +34,8 @@ void	    push(t_pile *src, t_pile *dst)
 	    tmp->next = dst->head;
 	    dst->head = tmp;
 	}
+	src->size--;
+	dst->size++;
     }
 }
 

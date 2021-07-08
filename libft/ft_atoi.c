@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 13:13:29 by user42            #+#    #+#             */
-/*   Updated: 2020/11/30 12:14:36 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/07 13:06:52 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	convert_atoi(const char *s, int start, int end, int sign)
 	return (res);
 }
 
-int			ft_atoi(const char *nptr)
+int			ft_atoi(const char *nptr, int *n)
 {
 	int		i;
 	int		sign;
@@ -59,8 +59,13 @@ int			ft_atoi(const char *nptr)
 	start = i;
 	while (ft_isdigit(nptr[i]))
 		i++;
-	i--;
-	if (i >= start)
-		return (convert_atoi(nptr, start, i, sign));
-	return (0);
+	if (i == start || i - start > 10)
+	    return (0);
+	else
+	{
+	    *n = convert_atoi(nptr, start, i - 1, sign);
+	    if ((sign == -1 && *n > 0) || (sign != -1 && *n < 0))
+		return (0);
+	}
+	return (1);
 }

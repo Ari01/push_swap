@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   elem.c                                             :+:      :+:    :+:   */
+/*   add_elem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/06 13:54:36 by user42            #+#    #+#             */
-/*   Updated: 2021/07/08 16:41:57 by user42           ###   ########.fr       */
+/*   Created: 2021/07/07 13:11:53 by user42            #+#    #+#             */
+/*   Updated: 2021/07/07 13:14:21 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ t_elem	    *new_elem(int value)
     return (elem);
 }
 
-t_pile	    init_pile()
+t_pile	    new_pile(int value)
 {
     t_pile  pile;
 
-    pile.size = 0;
-    pile.head = NULL;
-    pile.tail = NULL;
+    pile.size = 1;
+    pile.head = new_elem(value);
+    pile.tail = pile.head;
     return (pile);
 }
 
@@ -38,11 +38,7 @@ void	    push_back(t_pile *pile, int value)
     t_elem  *tmp;
 
     if (!pile->tail)
-    {
-	pile->head = new_elem(value);
-	pile->tail = pile->head;
-	pile->size++;
-    }
+	*pile = new_pile(value);
     else
     {
 	tmp = new_elem(value);
@@ -50,32 +46,5 @@ void	    push_back(t_pile *pile, int value)
 	tmp->prev->next = tmp;
 	pile->tail = tmp;
 	pile->size++;
-    }
-}
-
-void	    print_pile(t_pile pile)
-{
-    while (pile.head)
-    {
-	printf("%d ", pile.head->value);
-	pile.head = pile.head->next;
-    }
-/*    while (pile.tail)
-    {
-	printf("%d ", pile.tail->value);
-	pile.tail = pile.tail->prev;
-    }*/
-    printf("\n");
-}
-
-void	    clear(t_pile *pile)
-{
-    t_elem  *next;
-
-    while (pile->head)
-    {
-	next = pile->head->next;
-	free(pile->head);
-	pile->head = next;
     }
 }

@@ -5,12 +5,13 @@ LIBFTDIR = libft
 SRCS = elem.c \
 single_pile.c \
 multiple_piles.c \
+sort.c \
 push_swap.c
 
 OBJS = $(SRCS:.c=.o)
 
 CC = clang
-CLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 LFLAGS = -L. -lft
 RM = rm -rf
 
