@@ -31,6 +31,7 @@ clean :
 
 fclean :    clean
 	    $(RM) $(NAME) $(LIBFT)
+	    cd $(LIBFTDIR) && $(MAKE) clean fclean
 
 re :	    fclean all
 
