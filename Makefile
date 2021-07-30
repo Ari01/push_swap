@@ -5,8 +5,7 @@ LIBFTDIR = libft
 SRCS = elem.c \
 single_pile.c \
 multiple_piles.c \
-sort.c \
-push_swap.c
+sort.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -18,7 +17,10 @@ RM = rm -rf
 all :	    $(NAME)
 
 $(NAME) :   $(OBJS) $(LIBFT)
-	    $(CC) -o $@ $(OBJS) $(LFLAGS)
+	    $(CC) $(CFLAGS) push_swap.c $(OBJS) -o $@ $(LFLAGS)
+
+handtester: $(OBJS) $(LIBFT)
+	    $(CC) $(CFLAGS) $(SRCS) hand_tester.c -o $@ $(LFLAGS)
 
 $(LIBFT) :  
 	    cd $(LIBFTDIR) && $(MAKE) $(BONUS) && mv $@ ../$@

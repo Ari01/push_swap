@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:13:39 by user42            #+#    #+#             */
-/*   Updated: 2021/07/10 19:10:09 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/10 19:08:09 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,31 @@ int	main(int ac, char **av)
 {
     t_pile  a;
     t_pile  b;
+    int	    count;
+    int	    n;
+    int	    i;
+    int	    used[100];
 
+    i = 0;
+    count = 0;
+    srand(time(NULL));
+    n = rand() % 100;
     a = init_pile();
     b = init_pile();
-    if (ac > 1)
+    while (i < 100)
     {
-	if (!get_args(av, &a))
-	    write(STDERR_FILENO, "Error\n", 6);
-	else
-	    sort(&a, &b);
+	used[i] = 0;
+	i++;
     }
+    while (a.size < 100)
+    {
+	while (used[n])
+	    n = rand() % 100;
+	used[n] = 1;
+	push_back(&a, n);
+    }
+    print_pile(a);
+    sort(&a, &b);
     clear(&a);
     clear(&b);
     return (0);

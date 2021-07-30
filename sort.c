@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 18:35:05 by user42            #+#    #+#             */
-/*   Updated: 2021/07/08 20:03:35 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/30 20:01:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,65 +62,93 @@ void	    sort_three(t_pile *a)
     }
 }
 
-int	    get_min_pos(t_pile src)
-{
-    int	    min;
-    int	    minpos;
-    int	    pos;
 
-    pos = 0;
-    minpos = 0;
-    if (src.head)
+t_elem	    *get_max(t_pile p, int *maxpos)
+{
+    int	    i;
+    t_elem  *max;
+
+    i = 0;
+    *maxpos = 0;
+    max = p.head;
+    while (p.head && p.head->next)
     {
-	min = src.head->value;
-	while (src.head->next)
+	i++;
+	p.head = p.head->next;
+	if (p.head->value > max->value)
 	{
-	    pos++;
-	    src.head = src.head->next;
-	    if (src.head->value < min)
-	    {
-		min = src.head->value;
-		minpos = pos;
-	    }
+	    max = p.head;
+	    *maxpos = i;
 	}
     }
-    return (minpos);
+    return (max);
 }
 
-int	    push_min(t_pile *src, t_pile *dst)
+int	    get_nops(int value, t_pile b)
 {
-    int	    minpos;
-    int	    ret;
-    void    (*f)(t_pile *);
+    t_elem  *ite;
+    t_elem  *max;
+    int	    nops;
 
-    minpos = get_min_pos(*src);
-    if (minpos <= src->size / 2)
-	f = &rotate;
+    max = get_max(b, &nops);
+    ite = max;
+    while (value < ite->value)
+    {
+	ite = ite->next;
+	nops++;
+	if (!ite)
+	{
+	    ite = b.head;
+	    nops = 0;
+	}
+	if (ite == max)
+	    break;
+    }
+    return (nops);
+}
+
+void	    set_head(t_pile *p, int nops)
+{
+    void    (*op)(t_pile *);
+
+    if (nops <= p->size / 2)
+	op = &rotate;
     else
     {
-	f = &reverse_rotate;
-	minpos = src->size - minpos;
+	nops = p->size - nops;
+	op = &reverse_rotate;
     }
-    ret = minpos + 1;
-    while (minpos--)
-	f(src);
-    push(src, dst);
-    return (ret);
+    while (nops--)
+	op(p);
 }
 
-void	    sort_min(t_pile *a, t_pile *b)
+void	    sort_in_b(t_pile *a, t_pile *b)
 {
-    int	    ret;
+    int	    count;
+    int	    nops;
+    t_elem  *max;
 
-    ret = 0;
+    count = 0;
     while (a->head)
-	ret += push_min(a, b);
+    {
+	if (b->size >= 2)
+	{
+	    nops = get_nops(a->head->value, *b);
+	    set_head(b, nops);
+	    count += nops;
+	}
+	push(a, b);
+	count++;
+    }
+    max = get_max(*b, &nops);
+    set_head(b, nops);
+    count += nops;
     while (b->head)
     {
 	push(b, a);
-	ret++;
+	count++;
     }
-    printf("moves = %d\n", ret);
+    printf("count = %d\n", count);
 }
 
 void	    sort(t_pile *a, t_pile *b)
@@ -133,7 +161,7 @@ void	    sort(t_pile *a, t_pile *b)
 	    sort_three(a);
 	else
 	{
-	    sort_min(a, b);
+	    sort_in_b(a, b);
 	    print_pile(*a);
 	    print_pile(*b);
 	}

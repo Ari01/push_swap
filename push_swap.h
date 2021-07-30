@@ -6,13 +6,19 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:17:26 by user42            #+#    #+#             */
-/*   Updated: 2021/07/08 19:14:22 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/30 19:01:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
 #include "libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
+
+# define ROTATE 0
+# define REVERSE_ROTATE 1
 
 /*
 ** TYPES
@@ -60,3 +66,5 @@ void		    rrr(t_pile *p1, t_pile *p2);
 
 int		    is_sorted(t_pile a, t_pile b);
 void		    sort(t_pile *a, t_pile *b);
+
+#endif
