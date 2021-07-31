@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   hand_tester.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:13:39 by user42            #+#    #+#             */
-/*   Updated: 2021/07/08 17:04:59 by user42           ###   ########.fr       */
+/*   Updated: 2021/07/31 19:39:49 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,25 @@ int	main(int ac, char **av)
 		}
 		if (cmd[0] == 'p')
 		    push(src, dst);
+		else if (cmd[0] == 's' && cmd[1] == 's')
+		{
+		    swap(&a);
+		    swap(&b);
+		}
 		else if (cmd[0] == 's')
 		    swap(dst);
-		else if (cmd[0] == 'r' && cmd[1] == 'r')
+		else if (cmd[0] == 'r' && cmd[1] == 'r' && (cmd[2] == 'a' || cmd[2] == 'b'))
 		    reverse_rotate(dst);
+		else if (cmd[0] == 'r' && cmd[1] == 'r' && cmd[2] == 'r')
+		{
+		    reverse_rotate(&a);
+		    reverse_rotate(&b);
+		}
+		else if (cmd[0] == 'r' && cmd[1] == 'r')
+		{
+		    rotate(&a);
+		    rotate(&b);
+		}
 		else
 		    rotate(dst);
 		count++;

@@ -1,3 +1,5 @@
+#include "push_swap.h"
+
 int	    get_min_pos(t_pile src)
 {
     int	    min;
