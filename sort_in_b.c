@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_elem	    *get_max(t_pile p, int *maxpos)
+static t_elem	    *get_max(t_pile p, int *maxpos)
 {
     int	    i;
     t_elem  *max;
@@ -21,7 +21,7 @@ t_elem	    *get_max(t_pile p, int *maxpos)
     return (max);
 }
 
-int	    get_nops(int value, t_pile b)
+static int	    get_nops(int value, t_pile b)
 {
     t_elem  *ite;
     t_elem  *max;
@@ -44,7 +44,7 @@ int	    get_nops(int value, t_pile b)
     return (nops);
 }
 
-int	    set_head(t_pile *p, int nops)
+static int	    set_head(t_pile *p, int nops)
 {
     void    (*op)(t_pile *);
     char    *msg;

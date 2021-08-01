@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 16:07:07 by user42            #+#    #+#             */
-/*   Updated: 2021/07/06 17:04:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/01 17:52:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	    swap_elem(t_elem *e1, t_elem *e2)
 void	    swap(t_pile *pile)
 {
     if (pile->head && pile->head->next)
+    {
 	swap_elem(pile->head, pile->head->next);
+	print_op("s", pile->id);
+    }
 }
 
 void	    rotate(t_pile *pile)
@@ -45,6 +48,7 @@ void	    rotate(t_pile *pile)
 	    pile->tail = pile->head;
 	    pile->head = newhead;
 	}
+	print_op("r", pile->id);
     }
 }
 
@@ -66,5 +70,6 @@ void	    reverse_rotate(t_pile *pile)
 	    pile->head = pile->tail;
 	    pile->tail = newtail;
 	}
+	print_op("rr", pile->id);
     }
 }

@@ -6,12 +6,29 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:13:39 by user42            #+#    #+#             */
-/*   Updated: 2021/07/10 19:10:09 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/01 18:00:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <time.h>
 #include "push_swap.h"
+
+void	print_op(char *op, char id)
+{
+    char    s[4];
+    int	    len;
+
+    len = ft_strlen(op);
+    ft_strlcpy(s, op, len + 1);
+    if (id)
+    {
+	s[len] = id;
+	s[++len] = '\n';
+    }
+    else
+	s[len] = '\n';
+    write(1, s, len + 1);
+}
 
 int	pilechr(t_pile pile, int n)
 {
@@ -45,8 +62,8 @@ int	main(int ac, char **av)
     t_pile  a;
     t_pile  b;
 
-    a = init_pile();
-    b = init_pile();
+    a = init_pile('a');
+    b = init_pile('b');
     if (ac > 1)
     {
 	if (!get_args(av, &a))

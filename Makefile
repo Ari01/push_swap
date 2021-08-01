@@ -37,8 +37,9 @@ clean :
 	    $(RM) $(OBJS)
 
 fclean :    clean
-	    $(RM) $(NAME) $(LIBFT)
-	    cd $(LIBFTDIR) && $(MAKE) clean fclean
+	    $(RM) $(NAME) $(LIBFT) handtester randomize
+	    $(RM) .*.swp
+	    cd $(LIBFTDIR) && $(MAKE) fclean
 
 re :	    fclean all
 

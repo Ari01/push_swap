@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:17:26 by user42            #+#    #+#             */
-/*   Updated: 2021/07/31 20:15:54 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/01 17:51:50 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 #include "libft/libft.h"
 #include <unistd.h>
 #include <stdlib.h>
-
-# define ROTATE 0
-# define REVERSE_ROTATE 1
 
 /*
 ** TYPES
@@ -36,13 +33,14 @@ typedef struct	    s_pile
     t_elem	    *head;
     t_elem	    *tail;
     int		    size;
+    char	    id;
 }		    t_pile;
 
 /*
 ** LIST FUNCTIONS
 */
 t_elem		    *new_elem(int value);
-t_pile		    init_pile();
+t_pile		    init_pile(char id);
 void		    push_back(t_pile *pile, int value);
 void		    print_pile(t_pile pile);
 void		    clear(t_pile *pile);
@@ -68,5 +66,10 @@ int		    is_sorted(t_pile a, t_pile b);
 void		    sort(t_pile *a, t_pile *b);
 void		    sort_min(t_pile *a, t_pile *b);
 void		    sort_in_b(t_pile *a, t_pile *b);
+
+/*
+**  PRINT
+*/
+void		    print_op(char *op, char id);
 
 #endif
