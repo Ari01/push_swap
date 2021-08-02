@@ -21,57 +21,6 @@ static t_elem	    *get_max(t_pile p, int *maxpos)
     return (max);
 }
 
-static int	    get_nops(int value, t_pile b)
-{
-    t_elem  *ite;
-    t_elem  *max;
-    int	    nops;
-
-    max = get_max(b, &nops);
-    ite = max;
-    while (value < ite->value)
-    {
-	ite = ite->next;
-	nops++;
-	if (!ite)
-	{
-	    ite = b.head;
-	    nops = 0;
-	}
-	if (ite == max)
-	    break;
-    }
-    return (nops);
-}
-
-static int	    set_head(t_pile *p, int nops)
-{
-    void    (*op)(t_pile *);
-    char    *msg;
-    int	    i;
-
-    i = 0;
-    if (nops <= p->size / 2)
-    {
-	op = &rotate;
-	msg = "rb";
-    }
-    else
-    {
-	nops = p->size - nops;
-	op = &reverse_rotate;
-	msg = "rrb";
-    }
-    while (i < nops)
-    {
-	op(p);
-	printf("%s\n", msg);
-	i++;
-    }
-    return (nops);
-}
-
-
 void	    sort_in_b(t_pile *a, t_pile *b)
 {
     int	    count;

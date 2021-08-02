@@ -5,8 +5,7 @@ LIBFTDIR = libft
 SRCS = elem.c \
 single_pile.c \
 multiple_piles.c \
-sort_in_b.c \
-sort_min.c \
+sort_utils.c \
 sort.c
 
 OBJS = $(SRCS:.c=.o)

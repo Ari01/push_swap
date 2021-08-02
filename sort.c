@@ -6,31 +6,11 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 18:35:05 by user42            #+#    #+#             */
-/*   Updated: 2021/08/01 19:01:38 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/02 22:37:30 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	    is_sorted(t_pile a, t_pile b)
-{
-    t_elem  *ite;
-
-    if (b.head)
-	return (0);
-    while (a.head)
-    {
-	ite = a.head->next;
-	while (ite)
-	{
-	    if (a.head->value > ite->value)
-		return (0);
-	    ite = ite->next;
-	}
-	a.head = a.head->next;
-    }
-    return (1);
-}
 
 int	    sort_two(t_pile *a)
 {
@@ -74,68 +54,6 @@ int	    sort_three(t_pile *a)
     return (0);
 }
 
-t_elem	    *get_min(t_pile p, int *minpos)
-{
-    int	    i;
-    t_elem  *min;
-
-    i = 0;
-    *minpos = 0;
-    min = p.head;
-    while (p.head && p.head->next)
-    {
-	i++;
-	p.head = p.head->next;
-	if (p.head->value < min->value)
-	{
-	    min = p.head;
-	    *minpos = i;
-	}
-    }
-    return (min);
-}
-
-int	    get_nops(int value, t_pile p, t_elem *min, int nops)
-{
-    t_elem  *ite;
-
-    ite = min;
-    while (value > ite->value)
-    {
-	ite = ite->next;
-	nops++;
-	if (!ite)
-	{
-	    ite = p.head;
-	    nops = 0;
-	}
-	if (ite == min)
-	    break;
-    }
-    return (nops);
-}
-
-int	    set_head(t_pile *p, int nops)
-{
-    void    (*op)(t_pile *);
-    int	    i;
-
-    i = 0;
-    if (nops <= p->size / 2)
-	op = &rotate;
-    else
-    {
-	nops = p->size - nops;
-	op = &reverse_rotate;
-    }
-    while (i < nops)
-    {
-	op(p);
-	i++;
-    }
-    return (nops);
-}
-
 void	    sort_five(t_pile *a, t_pile *b)
 {
     int	    nops;
@@ -164,6 +82,75 @@ void	    sort_five(t_pile *a, t_pile *b)
     set_head(a, nops);
 }
 
+void	    convert_values(t_pile *a)
+{
+    t_elem  *i;
+    t_elem  *j;
+    t_pile  newpile;
+    int	    count;
+
+    count = 0;
+    i = a->head;
+    newpile = init_pile('a');
+    while (i)
+    {
+	j = a->head;
+	while (j)
+	{
+	    if (i->value > j->value)
+		count++;
+	    j = j->next;
+	}
+	push_back(&newpile, count);
+	count = 0;
+	i = i->next;
+    }
+    *a = newpile;
+    print_pile(*a);
+}
+
+void	    sort_hundreds(t_pile *a, t_pile *b)
+{
+    int	    count;
+    int	    i;
+    int	    j;
+    int	    maxbits;
+    int	    size;
+
+    i = 0;
+    count = 0;
+    maxbits = 0;
+    size = a->size;
+    convert_values(a);
+    while (((size - 1) >> maxbits) != 0)
+	maxbits++;
+    while (i < maxbits)
+    {
+	j = 0;
+	while (j < size)
+	{
+	    if ((a->head->value >> i)&1)
+	    {
+		rotate(a);
+		count++;
+	    }
+	    else
+	    {
+		push(a, b);
+		count++;
+	    }
+	    j++;
+	}
+	while (b->head)
+	{
+	    push(b, a);
+	    count++;
+	}
+	i++;
+    }
+    printf("count = %d\n", count);
+}
+
 void	    sort(t_pile *a, t_pile *b)
 {
     if (!is_sorted(*a, *b))
@@ -175,7 +162,7 @@ void	    sort(t_pile *a, t_pile *b)
 	else if (a->size <= 5)
 	    sort_five(a, b);
 	else
-	    sort_min(a, b);
+	    sort_hundreds(a, b);
     }
     print_pile(*a);
     print_pile(*b);

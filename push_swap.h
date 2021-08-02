@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:17:26 by user42            #+#    #+#             */
-/*   Updated: 2021/08/01 17:51:50 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/02 20:08:42 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,16 @@ void		    rr(t_pile *p1, t_pile *p2);
 void		    rrr(t_pile *p1, t_pile *p2);
 
 /*
+** SORT UTILS
+*/
+int		    is_sorted(t_pile a, t_pile b);
+t_elem		    *get_min(t_pile p, int *minpos);
+int		    get_nops(int value, t_pile p, t_elem *min, int nops);
+int		    set_head(t_pile *p, int nops);
+
+/*
 ** SORT FUNCTIONS
 */
-
 int		    is_sorted(t_pile a, t_pile b);
 void		    sort(t_pile *a, t_pile *b);
 void		    sort_min(t_pile *a, t_pile *b);
