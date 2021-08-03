@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 18:35:05 by user42            #+#    #+#             */
-/*   Updated: 2021/08/02 22:37:30 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/03 20:41:43 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,22 @@ int	    sort_three(t_pile *a)
 void	    sort_five(t_pile *a, t_pile *b)
 {
     int	    nops;
-    int	    minpos;
-    t_elem  *min;
+    void    (*op)(t_pile *);
 
     while (a->size > 3)
 	push(a, b);
     sort_three(a);
     while (b->head)
+	insert(b, a);
+    get_minmax(*a, &nops);
+    if (nops == 1)
+	swap(a);
+    else
     {
-	min = get_min(*a, &minpos);
-	nops = get_nops(b->head->value, *a, min, minpos);
-	if (!minpos && nops == 1)
-	{
-	    push(b, a);
-	    swap(a);
-	}
-	else
-	{
-	    set_head(a, nops);
-	    push(b, a);
-	}
+	op = get_op(a->size, &nops);
+	while (nops--)
+	    op(a);
     }
-    get_min(*a, &nops);
-    set_head(a, nops);
 }
 
 void	    convert_values(t_pile *a)
@@ -150,6 +143,39 @@ void	    sort_hundreds(t_pile *a, t_pile *b)
     }
     printf("count = %d\n", count);
 }
+/*
+void	    fusion(t_pile *a, t_pile *b)
+{
+    t_elem	(*get_minmax)(t_pile, int *);
+    int		pos;
+
+    if (a->id == 'a')
+	minmax = &min;
+    else
+	minmax = &max;
+    while (b->head)
+    {
+	min = get_minmax(*a, &pos);
+	nops = get_nops(b->head->value, *a, min, minpos);
+	if (!minpos && nops == 1)
+	{
+	    push(b, a);
+	    swap(a);
+	}
+	else
+	{
+	    set_head(a, nops);
+	    push(b, a);
+	}
+    }
+    get_min(*a, &nops);
+    set_head(a, nops);
+}
+
+void	    sort_fusion(t_pile *a, t_pile *b)
+{
+
+}*/
 
 void	    sort(t_pile *a, t_pile *b)
 {

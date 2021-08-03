@@ -3,6 +3,7 @@ LIBFT = libft.a
 LIBFTDIR = libft
 
 SRCS = elem.c \
+insert.c \
 single_pile.c \
 multiple_piles.c \
 sort_utils.c \
