@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 18:35:05 by user42            #+#    #+#             */
-/*   Updated: 2021/08/03 20:41:43 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/05 01:10:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,9 @@ void	    sort_five(t_pile *a, t_pile *b)
     while (b->head)
 	insert(b, a);
     get_minmax(*a, &nops);
-    if (nops == 1)
-	swap(a);
-    else
-    {
-	op = get_op(a->size, &nops);
-	while (nops--)
-	    op(a);
-    }
+    op = get_op(a->size, &nops);
+    while (nops--)
+	op(a);
 }
 
 void	    convert_values(t_pile *a)

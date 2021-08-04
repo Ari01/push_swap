@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 18:15:13 by user42            #+#    #+#             */
-/*   Updated: 2021/08/03 20:46:35 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/04 20:29:20 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	    inf(int a, int b)
 
 int	    sup(int a, int b)
 {
-    return (a < b);
+    return (a > b);
 }
 
 t_elem	    *get_minmax(t_pile p, int *pos)
@@ -54,6 +54,7 @@ int	    get_newpos(int value, t_pile p, t_elem *start, int newpos)
 
     ite = start;
     comp = &inf;
+    printf("value = %d, ite->value = %d, newpos = %d, p.id = %c\n", value, ite->value, newpos, p.id);
     if (p.id == 'a')
 	comp = &sup;
     while (comp(value, ite->value))
@@ -107,6 +108,7 @@ int	    insert(t_pile *a, t_pile *b)
     else
     {
 	op = get_op(b->size, &newpos);
+	printf("newpos = %d, minmaxpos = %d\n", newpos, minmax_pos);
 	while (newpos--)
 	{
 	    op(b);
