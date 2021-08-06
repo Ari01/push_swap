@@ -6,52 +6,36 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 18:35:05 by user42            #+#    #+#             */
-/*   Updated: 2021/08/05 01:10:27 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/06 05:31:05 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	    sort_two(t_pile *a)
+void	    sort_two(t_pile *a)
 {
     if (a->head->value > a->head->next->value)
-    {
 	swap(a);
-	return (1);
-    }
-    return (0);
 }
 
-int	    sort_three(t_pile *a)
+void	    sort_three(t_pile *a)
 {
     if (a->head->value > a->head->next->value
 	&& a->head->value > a->tail->value)
     {
 	rotate(a);
 	if (a->head->value > a->head->next->value)
-	{
 	    swap(a);
-	    return (2);
-	}
-	return (1);
     }
     else if (a->head->value > a->head->next->value)
-    {
 	swap(a);
-	return (1);
-    }
     else if (a->head->value > a->tail->value)
-    {
 	reverse_rotate(a);
-	return (1);
-    }
     else if (a->head->next->value > a->tail->value)
     {
 	swap(a);
 	rotate(a);
-	return (2);
     }
-    return (0);
 }
 
 void	    sort_five(t_pile *a, t_pile *b)
@@ -93,20 +77,18 @@ void	    convert_values(t_pile *a)
 	count = 0;
 	i = i->next;
     }
+    clear(a);
     *a = newpile;
-    print_pile(*a);
 }
 
 void	    sort_hundreds(t_pile *a, t_pile *b)
 {
-    int	    count;
     int	    i;
     int	    j;
     int	    maxbits;
     int	    size;
 
     i = 0;
-    count = 0;
     maxbits = 0;
     size = a->size;
     convert_values(a);
@@ -118,59 +100,16 @@ void	    sort_hundreds(t_pile *a, t_pile *b)
 	while (j < size)
 	{
 	    if ((a->head->value >> i)&1)
-	    {
 		rotate(a);
-		count++;
-	    }
 	    else
-	    {
 		push(a, b);
-		count++;
-	    }
 	    j++;
 	}
 	while (b->head)
-	{
 	    push(b, a);
-	    count++;
-	}
 	i++;
     }
-    printf("count = %d\n", count);
 }
-/*
-void	    fusion(t_pile *a, t_pile *b)
-{
-    t_elem	(*get_minmax)(t_pile, int *);
-    int		pos;
-
-    if (a->id == 'a')
-	minmax = &min;
-    else
-	minmax = &max;
-    while (b->head)
-    {
-	min = get_minmax(*a, &pos);
-	nops = get_nops(b->head->value, *a, min, minpos);
-	if (!minpos && nops == 1)
-	{
-	    push(b, a);
-	    swap(a);
-	}
-	else
-	{
-	    set_head(a, nops);
-	    push(b, a);
-	}
-    }
-    get_min(*a, &nops);
-    set_head(a, nops);
-}
-
-void	    sort_fusion(t_pile *a, t_pile *b)
-{
-
-}*/
 
 void	    sort(t_pile *a, t_pile *b)
 {
@@ -185,6 +124,4 @@ void	    sort(t_pile *a, t_pile *b)
 	else
 	    sort_hundreds(a, b);
     }
-    print_pile(*a);
-    print_pile(*b);
 }

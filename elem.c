@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:54:36 by user42            #+#    #+#             */
-/*   Updated: 2021/08/01 17:51:29 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/06 05:27:10 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,6 @@ void	    push_back(t_pile *pile, int value)
 	pile->tail = tmp;
 	pile->size++;
     }
-}
-
-void	    print_pile(t_pile pile)
-{
-    while (pile.head)
-    {
-	printf("%d ", pile.head->value);
-	pile.head = pile.head->next;
-    }
-    printf("\n");
 }
 
 void	    clear(t_pile *pile)

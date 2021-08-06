@@ -6,12 +6,23 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:13:39 by user42            #+#    #+#             */
-/*   Updated: 2021/08/01 18:59:17 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/06 05:08:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <time.h>
+#include <stdio.h>
 #include "push_swap.h"
+
+void	    print_pile(t_pile pile)
+{
+    while (pile.head)
+    {
+	printf("%d ", pile.head->value);
+	pile.head = pile.head->next;
+    }
+    printf("\n");
+}
 
 void	print_op(char *op, char id)
 {
@@ -90,7 +101,6 @@ int	main(int ac, char **av)
 	    used[n] = 1;
 	    push_back(&a, n);
 	}
-	print_pile(a);
 	sort(&a, &b);
 	free(used);
 	used = NULL;

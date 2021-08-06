@@ -6,11 +6,21 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/02 20:02:01 by user42            #+#    #+#             */
-/*   Updated: 2021/08/03 18:15:03 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/06 05:02:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	    inf(int a, int b)
+{
+    return (a < b);
+}
+
+int	    sup(int a, int b)
+{
+    return (a > b);
+}
 
 int	    is_sorted(t_pile a, t_pile b)
 {

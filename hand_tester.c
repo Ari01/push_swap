@@ -6,11 +6,22 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:13:39 by user42            #+#    #+#             */
-/*   Updated: 2021/08/02 19:59:28 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/06 05:32:15 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "push_swap.h"
+
+void	    print_pile(t_pile pile)
+{
+    while (pile.head)
+    {
+	printf("%d ", pile.head->value);
+	pile.head = pile.head->next;
+    }
+    printf("\n");
+}
 
 void	print_op(char *op, char id)
 {

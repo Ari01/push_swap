@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:17:26 by user42            #+#    #+#             */
-/*   Updated: 2021/08/03 20:43:33 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/06 05:04:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 /*
 ** TYPES
 */
-#include <stdio.h>
 typedef struct	    s_elem
 {
     int		    value;
@@ -64,11 +63,13 @@ void		    rrr(t_pile *p1, t_pile *p2);
 /*
 ** SORT UTILS
 */
+int		    inf(int a, int b);
+int		    sup(int a, int b);
 int		    is_sorted(t_pile a, t_pile b);
 t_elem		    *get_minmax(t_pile p, int *pos);
 int		    get_newpos(int value, t_pile p, t_elem *start, int newpos);
 void		    *get_op(int pilesize, int *nops);
-int		    insert(t_pile *a, t_pile *b);
+void		    insert(t_pile *a, t_pile *b);
 
 /*
 ** SORT FUNCTIONS
