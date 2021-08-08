@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 14:58:59 by user42            #+#    #+#             */
-/*   Updated: 2020/12/03 14:23:40 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/08 12:26:29 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@ static size_t	get_nb_len(int n)
 	}
 	if (unbr < 10)
 		return (len);
-	while ((unbr = unbr / 10))
+	while (unbr / 10)
+	{
+		unbr = unbr / 10;
 		len++;
+	}
 	return (len);
 }
 
-char			*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	char			*s;
 	int				i;

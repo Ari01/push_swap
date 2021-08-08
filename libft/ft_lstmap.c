@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 17:39:36 by user42            #+#    #+#             */
-/*   Updated: 2020/11/22 19:57:25 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/08 12:27:22 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list *new_list;
-	t_list *new_elem;
+	t_list	*new_list;
+	t_list	*new_elem;
 
 	new_list = NULL;
 	if (f)

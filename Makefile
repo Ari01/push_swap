@@ -21,11 +21,11 @@ all :	    $(NAME)
 $(NAME) :   $(OBJS) $(LIBFT) push_swap.c
 	    $(CC) $(CFLAGS) push_swap.c $(OBJS) -o $@ $(LFLAGS)
 
-handtester: $(OBJS) $(LIBFT) hand_tester.c
-	    $(CC) $(CFLAGS) $(SRCS) hand_tester.c -o $@ $(LFLAGS)
+handtester: $(OBJS) $(LIBFT) extra/hand_tester.c
+	    $(CC) $(CFLAGS) $(SRCS) extra/hand_tester.c -o $@ $(LFLAGS) -I ./
 
-randomize:  $(OBJS) $(LIBFT) randomize.c
-	    $(CC) $(CFLAGS) $(SRCS) randomize.c -o $@ $(LFLAGS)
+randomize:  $(OBJS) $(LIBFT) extra/randomize.c
+	    $(CC) $(CFLAGS) $(SRCS) extra/randomize.c -o $@ $(LFLAGS) -I ./
 
 $(LIBFT) :  
 	    cd $(LIBFTDIR) && $(MAKE) $(BONUS) && mv $@ ../$@

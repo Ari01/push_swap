@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 20:29:37 by user42            #+#    #+#             */
-/*   Updated: 2020/12/05 14:57:46 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/08 12:33:56 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*get_strnstr(const char *big, const char *little, size_t len)
 	return (NULL);
 }
 
-char		*ft_strnstr(const char *big, const char *little, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	if (!little[0])
 		return ((char *)big);

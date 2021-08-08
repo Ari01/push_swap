@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 18:49:24 by user42            #+#    #+#             */
-/*   Updated: 2020/11/17 20:27:49 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/08 12:32:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
-	size_t i;
-	size_t j;
-	size_t destlen;
-	size_t srclen;
+	size_t	i;
+	size_t	j;
+	size_t	destlen;
+	size_t	srclen;
 
 	i = 0;
 	j = 0;

@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 14:13:39 by user42            #+#    #+#             */
-/*   Updated: 2021/08/06 05:32:15 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/08 10:59:32 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,9 +127,6 @@ int	main(int ac, char **av)
 		count++;
 	    }
 	    printf("\n moves : %d\n", count);
-	    /*print_pile(a);
-	    sort(&a);
-	    print_pile(a);*/
 	}
 	clear(&a);
 	clear(&b);

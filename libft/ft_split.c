@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 18:07:17 by user42            #+#    #+#             */
-/*   Updated: 2020/11/22 19:40:03 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/08 12:32:06 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static size_t	get_word_start(char const *s, int start, char c)
 
 static size_t	get_word_len(char const *s, int start, char c)
 {
-	size_t end;
+	size_t	end;
 
 	end = start;
 	while (s[end] && s[end] != c)
@@ -32,9 +32,9 @@ static size_t	get_word_len(char const *s, int start, char c)
 
 static size_t	get_nwords(char const *s, char c)
 {
-	size_t start;
-	size_t len;
-	size_t nwords;
+	size_t	start;
+	size_t	len;
+	size_t	nwords;
 
 	start = 0;
 	len = 0;
@@ -52,7 +52,7 @@ static size_t	get_nwords(char const *s, char c)
 	return (nwords);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**split;
 	int		i;
@@ -62,18 +62,17 @@ char			**ft_split(char const *s, char c)
 	i = 0;
 	start = 0;
 	len = 0;
-	if (!(split = malloc(sizeof(*split) * (get_nwords(s, c) + 1))))
+	split = malloc(sizeof(*split) * (get_word_len(s, c) + 1));
+	if (!split)
 		return (NULL);
 	if (s)
 	{
 		while (s[start])
 		{
 			start = get_word_start(s, start, c);
-			if ((len = get_word_len(s, start, c)))
-			{
-				split[i] = ft_substr(s, start, len);
-				i++;
-			}
+			len = get_word_start(s, start, c);
+			if (len)
+				split[i++] = ft_substr(s, start, len);
 			start += len;
 		}
 	}
