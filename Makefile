@@ -2,7 +2,8 @@ NAME = push_swap
 LIBFT = libft.a
 LIBFTDIR = libft
 
-SRCS = elem.c \
+SRCS = parse.c \
+elem.c \
 insert.c \
 single_pile.c \
 multiple_piles.c \

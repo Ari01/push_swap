@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/06 13:17:26 by user42            #+#    #+#             */
-/*   Updated: 2021/08/08 12:19:58 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/19 17:53:40 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,11 @@ typedef struct s_pile
 	int		size;
 	char	id;
 }	t_pile;
+
+/*
+** PARSING
+*/
+int		get_args(char **av, t_pile *p);
 
 /*
 ** LIST FUNCTIONS

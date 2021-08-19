@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 13:13:29 by user42            #+#    #+#             */
-/*   Updated: 2021/08/08 12:22:37 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/19 17:08:24 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	ft_atoi(const char *nptr, int *n)
 	int		start;
 
 	i = 0;
+	if (!nptr || !*nptr)
+		return (0);
 	while (ft_isspace(nptr[i]))
 		i++;
 	sign = ft_issign(nptr[i]);
@@ -59,7 +61,7 @@ int	ft_atoi(const char *nptr, int *n)
 	start = i;
 	while (ft_isdigit(nptr[i]))
 		i++;
-	if (i == start || i - start > 10)
+	if (nptr[i] || i == start || i - start > 10)
 		return (0);
 	else
 	{
