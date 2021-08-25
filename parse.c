@@ -6,7 +6,7 @@
 /*   By: user42 <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 17:45:55 by user42            #+#    #+#             */
-/*   Updated: 2021/08/19 17:55:45 by user42           ###   ########.fr       */
+/*   Updated: 2021/08/25 13:48:08 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	get_args(char **av, t_pile *p)
 	i = 1;
 	while (av[i])
 	{
-		s = ft_split(av[i], " \f\n\r\t\v");
+		s = ft_split(av[i], " ");
 		ret = push_arg(s, p);
 		free_strtab(s);
 		if (!ret)
